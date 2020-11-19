@@ -15,9 +15,10 @@
   <script src="assets/UnityProgress.js"></script>
   <script src="Build/UnityLoader.js"></script>
   <script>
-    var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Default WebGL.json", {
-      onProgress: UnityProgress
-    });
+    if (window.location.href.indexOf("file:///") < 0)
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Default WebGL.json", {
+        onProgress: UnityProgress
+      });
   </script>
 </head>
 
@@ -50,6 +51,11 @@
       <img src="assets/google-play-badge.png">
     </a>
 
+  </div>
+  <div class="tos-footer">
+    <a href="termsconditions.html">Terms & Conditions</a>
+    &nbsp;&nbsp;
+    <a href="privacypolicy.html">Privacy Policy</a>
   </div>
   <!-- <div class="footer">
         <div class="webgl-logo"></div>
