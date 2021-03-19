@@ -29,6 +29,10 @@
             var urlParams = new URLSearchParams(queryString);
             if (isAndroid && urlParams.get('t')) {
                 window.location = 'dashcraft://track?' + urlParams.get('t');
+                setTimeout(
+                    "window.location = 'https://play.google.com/store/apps/details?id=io.dashcraft.game';",
+                    1000
+                );
             }
         </script>
     </head>
@@ -74,6 +78,7 @@
             <a href="termsconditions.html">Terms & Conditions</a>
             &nbsp;&nbsp;
             <a href="privacypolicy.html">Privacy Policy</a>
+            <a href="dashcraft://track?6038ea56296ae44768de688d">depp link</a>
         </div>
         <!-- <div class="footer">
         <div class="webgl-logo"></div>
