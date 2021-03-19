@@ -1,66 +1,84 @@
 <!DOCTYPE html>
 <html lang="en-us">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>DashCraft.io - Build and Race!</title>
+        <link rel="shortcut icon" href="assets/favicon.ico" />
+        <link rel="stylesheet" href="assets/style.css" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap"
+            rel="stylesheet"
+        />
+        <script src="assets/UnityProgress.js"></script>
+        <script src="Build/UnityLoader.js"></script>
+        <script>
+            if (window.location.href.indexOf('file:///') < 0)
+                var unityInstance = UnityLoader.instantiate(
+                    'unityContainer',
+                    'Build/Default WebGL.json',
+                    {
+                        onProgress: UnityProgress,
+                    }
+                );
 
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>DashCraft.io - Build and Race!</title>
-  <link rel="shortcut icon" href="assets/favicon.ico">
-  <link rel="stylesheet" href="assets/style.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&display=swap" rel="stylesheet">
-  <script src="assets/UnityProgress.js"></script>
-  <script src="Build/UnityLoader.js"></script>
-  <script>
-    if (window.location.href.indexOf("file:///") < 0)
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Build/Default WebGL.json", {
-        onProgress: UnityProgress
-      });
-  </script>
-</head>
+            var isAndroid = /(android)/i.test(navigator.userAgent);
+            var queryString = window.location.search;
+            var urlParams = new URLSearchParams(queryString);
+            if (isAndroid && urlParams.get('t')) {
+                window.location = 'dashcraft://track?' + urlParams.get('t');
+            }
+        </script>
+    </head>
 
-<body>
-  <div class="header">
-    DashCraft.io
-  </div>
-  <div class="center">
-    <div id="unityContainer"></div>
-    <div id="mobileInfo" style="display: none;text-align: center;">
-      <img src="assets/feature.png" style="height: 20vh;border-radius: 5px;"><br><br>
-      Please open this website on a computer to play the game directly in your browser.<br><br>
-      Or download the game on your mobile/tablet at one of the links below.
-    </div>
-    <script>
-      if (UnityLoader.SystemInfo.mobile) {
-        document.getElementById("unityContainer").style.display = "none";
-        document.getElementById("mobileInfo").style.display = "block";
-      } else {
-        let container = document.getElementById("unityContainer");
-        container.style.width = Math.floor(window.innerWidth * 0.7) + "px";
-        container.style.height = Math.floor(window.innerHeight * 0.7) + "px";
-      }
-    </script>
-  </div>
-  <div class="footer">
-    <a href="https://discord.gg/fZjz77mtXr" class="link-with-image">
-      <img src="assets/discord.svg">
-    </a>
-    <a href="#" class="link-with-image">
-      <img src="assets/google-play-badge.png">
-    </a>
-
-  </div>
-  <div class="tos-footer">
-    <a href="termsconditions.html">Terms & Conditions</a>
-    &nbsp;&nbsp;
-    <a href="privacypolicy.html">Privacy Policy</a>
-  </div>
-  <!-- <div class="footer">
+    <body>
+        <div class="header">DashCraft.io</div>
+        <div class="center">
+            <div id="unityContainer"></div>
+            <div id="mobileInfo" style="display: none; text-align: center">
+                <img
+                    src="assets/feature.png"
+                    style="height: 20vh; border-radius: 5px"
+                /><br /><br />
+                Please open this website on a computer to play the game directly
+                in your browser.<br /><br />
+                Or download the game on your mobile/tablet at one of the links
+                below.
+            </div>
+            <script>
+                if (UnityLoader.SystemInfo.mobile) {
+                    document.getElementById('unityContainer').style.display =
+                        'none';
+                    document.getElementById('mobileInfo').style.display =
+                        'block';
+                } else {
+                    let container = document.getElementById('unityContainer');
+                    container.style.width =
+                        Math.floor(window.innerWidth * 0.7) + 'px';
+                    container.style.height =
+                        Math.floor(window.innerHeight * 0.7) + 'px';
+                }
+            </script>
+        </div>
+        <div class="footer">
+            <a href="https://discord.gg/fZjz77mtXr" class="link-with-image">
+                <img src="assets/discord.svg" />
+            </a>
+            <a href="#" class="link-with-image">
+                <img src="assets/google-play-badge.png" />
+            </a>
+        </div>
+        <div class="tos-footer">
+            <a href="termsconditions.html">Terms & Conditions</a>
+            &nbsp;&nbsp;
+            <a href="privacypolicy.html">Privacy Policy</a>
+        </div>
+        <!-- <div class="footer">
         <div class="webgl-logo"></div>
         <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
         <div class="title">Race game</div>
       </div> -->
-</body>
-
+    </body>
 </html>
