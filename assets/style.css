@@ -9,7 +9,7 @@ body {
     left: 0;
     bottom: 0;
     right: 0;
-	user-select: none;
+    user-select: none;
 }
 
 .header {
@@ -45,7 +45,7 @@ body {
     text-decoration: none;
 }
 
-.link-with-image>img {
+.link-with-image > img {
     height: 45px;
 }
 
@@ -61,4 +61,55 @@ body {
     text-decoration: none;
     color: rgba(255, 255, 255, 0.5);
     font-size: 0.8rem;
+}
+
+#sharedTrackPopup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #121212;
+    padding: 32px;
+    flex-direction: column;
+    padding-bottom: 8px;
+}
+
+#sharedTrackPopup .title {
+    font-size: 1.5rem;
+    margin-bottom: 12px;
+}
+
+#sharedTrackImage {
+    width: 100%;
+    border-radius: 5px;
+}
+#sharedTrackAuthor {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    text-align: right;
+}
+
+#sharedPopupIos {
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.info-text {
+    font-size: 0.8rem;
+    color: rgb(141, 141, 141);
+}
+
+.button {
+    text-decoration: none;
+    display: block;
+    padding: 12px;
+    font-weight: bold;
+    background-color: #4caf50;
+    border-bottom: 5px solid #3c8b3e;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
 }

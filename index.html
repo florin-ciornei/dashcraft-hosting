@@ -14,6 +14,11 @@
         />
         <script src="assets/UnityProgress.js"></script>
         <script src="Build/UnityLoader.js"></script>
+        <script
+            src="https://code.jquery.com/jquery-3.6.0.min.js"
+            integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+            crossorigin="anonymous"
+        ></script>
         <script>
             if (window.location.href.indexOf('file:///') < 0)
                 var unityInstance = UnityLoader.instantiate(
@@ -23,17 +28,6 @@
                         onProgress: UnityProgress,
                     }
                 );
-
-            var isAndroid = /(android)/i.test(navigator.userAgent);
-            var queryString = window.location.search;
-            var urlParams = new URLSearchParams(queryString);
-            if (isAndroid && urlParams.get('t')) {
-                window.location = 'dashcraft://track?' + urlParams.get('t');
-                setTimeout(
-                    "window.location = 'https://play.google.com/store/apps/details?id=io.dashcraft.game';",
-                    1000
-                );
-            }
         </script>
     </head>
 
@@ -78,12 +72,82 @@
             <a href="termsconditions.html">Terms & Conditions</a>
             &nbsp;&nbsp;
             <a href="privacypolicy.html">Privacy Policy</a>
-            <a href="dashcraft://track?6038ea56296ae44768de688d">depp link</a>
         </div>
-        <!-- <div class="footer">
-        <div class="webgl-logo"></div>
-        <div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
-        <div class="title">Race game</div>
-      </div> -->
+
+        <!--for now displayed only on Android-->
+        <div id="sharedTrackPopup">
+            <div style="flex: 1">
+                <div class="title">DashCraft.io</div>
+                <img id="sharedTrackImage" />
+                <div id="sharedTrackAuthor"></div>
+
+                <div id="sharedPopupAndroid">
+                    <a
+                        id="playSharedTrackButton"
+                        class="button"
+                        style="margin-bottom: 8px"
+                        onclick="playSharedTrack()"
+                        >PLAY</a
+                    >
+                    <div class="info-text">
+                        By pressing "Play" you will open the game on your
+                        device. If you don't have the game installed, you will
+                        be redirected to Google Play.
+                    </div>
+                </div>
+
+                <div id="sharedPopupIos">
+                    The game is not yet available for iOS devices. But you can
+                    open this link on your computer and play it directly in your
+                    browser.
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center">
+                <a href="https://discord.gg/fZjz77mtXr" class="link-with-image">
+                    <img src="assets/discord.svg" />
+                </a>
+                <a href="#" class="link-with-image">
+                    <img src="assets/google-play-badge.png" />
+                </a>
+            </div>
+        </div>
     </body>
+
+    <script>
+        userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        var isAndroid = /(android)/i.test(userAgent);
+        var isIos = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+        var isMobile = isAndroid || isIos;
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+
+        function playSharedTrack() {
+            setTimeout(
+                "window.location = 'https://play.google.com/store/apps/details?id=io.dashcraft.game';",
+                1000
+            );
+        }
+
+        if (/*isMobile && */ urlParams.get('t')) {
+            var trackId = urlParams.get('t');
+            $('#sharedTrackPopup').css('display', 'flex');
+            $('#sharedTrackImage').attr(
+                'src',
+                'https://cdn.dashcraft.io/track-thumbnail/lg/' +
+                    trackId +
+                    '.jpg'
+            );
+            $('#playSharedTrackButton').attr(
+                'href',
+                'dashcraft://track?' + urlParams.get('t')
+            );
+
+            $('#sharedPopupIos').toggle(isIos);
+            $('#sharedPopupAndroid').toggle(isAndroid);
+            $.get('https://api.dashcraft.io/track/' + trackId).then((track) => {
+                $('#sharedTrackAuthor').html('by ' + track.username);
+            });
+        }
+    </script>
 </html>
