@@ -127,10 +127,10 @@
             window.location = 'dashcraft://track?' + urlParams.get('t');
             var now = new Date().valueOf();
             setTimeout(function () {
-                if (new Date().valueOf() - now > 100) return;
+                if (new Date().valueOf() - now > 2000) return;
                 window.location =
                     'https://play.google.com/store/apps/details?id=io.dashcraft.game';
-            }, 25);
+            }, 1000);
         }
 
         if (isMobile && urlParams.get('t')) {
