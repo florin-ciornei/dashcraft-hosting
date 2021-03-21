@@ -131,7 +131,7 @@
             }, 1000);
         }
 
-        if (/*isMobile && */ urlParams.get('t')) {
+        if (isMobile && urlParams.get('t')) {
             var trackId = urlParams.get('t');
             $('#sharedTrackPopup').css('display', 'flex');
             $('#sharedTrackImage').attr(
