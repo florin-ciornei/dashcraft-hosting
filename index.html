@@ -125,10 +125,10 @@
 
         function playSharedTrack() {
             window.location = 'dashcraft://track?' + urlParams.get('t');
-            setTimeout(
-                "window.location = 'https://play.google.com/store/apps/details?id=io.dashcraft.game';",
-                1000
-            );
+            setTimeout(function () {
+                window.location =
+                    'https://play.google.com/store/apps/details?id=io.dashcraft.game';
+            }, 1000);
         }
 
         if (/*isMobile && */ urlParams.get('t')) {
