@@ -82,13 +82,14 @@
                 <div id="sharedTrackAuthor"></div>
 
                 <div id="sharedPopupAndroid">
-                    <a
+                    <button
                         id="playSharedTrackButton"
                         class="button"
                         style="margin-bottom: 8px"
                         onclick="playSharedTrack()"
-                        >PLAY</a
                     >
+                        PLAY
+                    </button>
                     <div class="info-text">
                         By pressing "Play" you will open the game on your
                         device. If you don't have the game installed, you will
@@ -123,6 +124,7 @@
         var urlParams = new URLSearchParams(queryString);
 
         function playSharedTrack() {
+            window.location = 'dashcraft://track?' + urlParams.get('t');
             setTimeout(
                 "window.location = 'https://play.google.com/store/apps/details?id=io.dashcraft.game';",
                 1000
@@ -137,10 +139,6 @@
                 'https://cdn.dashcraft.io/track-thumbnail/lg/' +
                     trackId +
                     '.jpg'
-            );
-            $('#playSharedTrackButton').attr(
-                'href',
-                'dashcraft://track?' + urlParams.get('t')
             );
 
             $('#sharedPopupIos').toggle(isIos);
